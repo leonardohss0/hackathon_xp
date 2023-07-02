@@ -69,8 +69,5 @@ Isso iniciará o servidor e o aplicativo estará disponível no endereço http:/
 
 Acesse o endereço no seu navegador para utilizar o OrganizAI.
 
-## Contribuição
-Se você deseja contribuir para este projeto, fique à vontade para enviar pull requests ou relatar problemas na seção de issues. Sua contribuição é muito bem-vinda!
-
 ## Licença
 Este projeto está licenciado nos termos da licença MIT.

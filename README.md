@@ -1,5 +1,6 @@
 # Projeto Hackathon - OrganizAI 
 keywords: Inteligência Artificial, Finanças, Python, ChatGPT, Chatbot, Planejamento Financeiro, Sistema Web
+
 Este projeto foi desenvolvido como parte de um hackathon do setor financeiro, com o objetivo de criar uma plataforma web completa para ajudar os usuários a economizarem dinheiro, gerenciarem suas finanças e melhorarem seus investimentos. A plataforma utiliza tecnologias como Dash, Plotly e Python, além de integração com o ChatGPT API para fornecer um planejamento financeiro totalmente personalizado para cada usuário.
 
 

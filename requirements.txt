@@ -1,0 +1,10 @@
+dash==2.11.1
+dash_bootstrap_components==1.4.1
+Flask==2.2.5
+Flask_Login==0.6.2
+flask_sqlalchemy==3.0.5
+numpy==1.23.5
+pandas==1.5.3
+plotly==5.9.0
+SQLAlchemy==1.4.39
+Werkzeug==2.2.2

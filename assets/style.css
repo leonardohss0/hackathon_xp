@@ -1,0 +1,8 @@
+/* Custom App CSS Below --------------------------------- */
+/*Fonts ––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+.align-self-center {
+    display: flex;
+    justify-content: center;
+    border: none;
+}

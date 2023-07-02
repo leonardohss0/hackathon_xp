@@ -7,7 +7,7 @@ import dash
 from flask_login import current_user
 
 from app import *
-from pages import login, data, register
+from pages import login, data, register, home
 
 
 login_manager = LoginManager()
@@ -45,6 +45,8 @@ def render_page_content(login_state, register_state):
         
         if trigg_id == 'login-state' and login_state == "success":
             return '/data'
+        if trigg_id == 'login-state' and login_state == "success":
+            return '/home'
         if trigg_id == 'login-state' and login_state == "error":
             return '/login'
         
@@ -73,63 +75,9 @@ def render_page_content(pathname, login_state, register_state):
 
     if pathname == "/data":
         return data.render_layout()
-  
     
-# Login and register buttons
-# @app.callback(
-#     Output('base-state', 'data'), 
-    
-#     [Input('login_button', 'n_clicks'),
-#     Input('register-button', 'n_clicks')],  
-
-#     [
-#         State('user_login', 'value'), 
-#         State('pwd_login', 'value'),
-#         State('user_register', 'value'), 
-#         State('pwd_register', 'value'),
-#         State('email_register', 'value')
-#     ])
-# def successful(login_button, register, user_login, pwd_login, user_register, pwd_register, email_register):
-#     print("hi")
-#     return
-    # user = Users.query.filter_by(username=username).first()
-    # if user and password is not None:
-    #     if check_password_hash(user.password, password):
-    #         login_user(user)
-    #         return '/data', ""
-    #     else:
-    #         return '/login', "error"
-    # else:
-    #     return '/login', "error"
-
-
-
-# @app.callback(
-#     [
-#         Output('register-url', 'pathname'),
-#         Output('register-state', 'data'), 
-#     ],
-#     Input('register-button', 'n_clicks'), 
-
-#     [
-#         State('user_register', 'value'), 
-#         State('pwd_register', 'value'),
-#         State('email_register', 'value')
-#     ],
-#     )
-# def successful(n_clicks, username, password, email):
-#     if n_clicks == None:
-#         raise PreventUpdate
-
-#     if username is not None and password is not None and email is not None:
-#         hashed_password = generate_password_hash(password, method='sha256')
-#         ins = Users_tbl.insert().values(username=username,  password=hashed_password, email=email)
-#         conn = engine.connect()
-#         conn.execute(ins)
-#         conn.close()
-#         return '/login', ''
-#     else:
-#         return '/register', 'error'
+    if pathname == "/home":
+        return home.render_layout()
 
 if __name__ == "__main__":
     app.run_server(port=8050, debug=True)

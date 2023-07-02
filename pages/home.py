@@ -17,9 +17,9 @@ from dash.exceptions import PreventUpdate
 def render_layout():
     template = html.Div([
             dbc.Card([
-                dcc.Location(id="data-url"), 
-                html.Div([
-                    html.Iframe(src='https://r2aubuvhy9q.typeform.com/c/DjIIB0vP', style= {'height':'80vh', 'width':'50vw', 'margin':'50px 0px 30px 0px'})
+                dcc.Location(id="home-url"), 
+                html.P([
+                    'Página home'
                 ]),
                 html.Div([
                     dbc.Button("Próximo", id="next-page"),            
@@ -31,12 +31,11 @@ def render_layout():
 
 # =========  Callbacks Page1  =========== #
 @app.callback(
-    Output('data-url', 'pathname'),
-    Input('next-page', 'n_clicks'), 
+    Output('home-url', 'pathname'),
+    Input('logout_button', 'n_clicks'),
     )
-def next_page(n_clicks):
+def successful(n_clicks):
     if n_clicks == None:
         raise PreventUpdate
-
-    else:
-        return '/home'
+    
+    return '/login'

@@ -1,16 +1,12 @@
 from dash import html, dcc
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 from app import *
+import time
 
-import numpy as np
-import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
-from dash_bootstrap_templates import load_figure_template
+import warnings
+warnings.filterwarnings("ignore")
 
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user, logout_user, current_user
 from dash.exceptions import PreventUpdate
 
 # =========  Layout  =========== #
@@ -21,9 +17,10 @@ def render_layout():
                 html.Div([
                     html.Iframe(src='https://r2aubuvhy9q.typeform.com/c/DjIIB0vP', style= {'height':'80vh', 'width':'50vw', 'margin':'50px 0px 30px 0px'})
                 ]),
+                
                 html.Div([
-                    dbc.Button("Próximo", id="next-page"),            
-                ])
+                    dbc.Button("Começar a Organizar", id="next-page", style={'margin':'0px 0px 0px 50px'}),            
+                ], id= 'div-botao', style={'display': 'none'})
 
             ], className="align-self-center")
         ])
@@ -40,3 +37,13 @@ def next_page(n_clicks):
 
     else:
         return '/home'
+    
+
+@app.callback(Output('div-botao', 'style'),
+              Input('div-botao', 'n_clicks'))
+def show_button(n_clicks):
+    if n_clicks is None:
+        time.sleep(30)
+        return {'display': 'block'}
+    else:
+        return {'display': 'none'}

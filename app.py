@@ -8,6 +8,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin
 import os
 
+import warnings
+warnings.filterwarnings("ignore")
+
 conn = sqlite3.connect('data.sqlite')
 engine = create_engine('sqlite:///data.sqlite')
 db = SQLAlchemy()
@@ -20,7 +23,11 @@ class Users(db.Model):
 
 Users_tbl = Table('users', Users.metadata)
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.COSMO])
+external_stylesheets = [dbc.themes.COSMO, dbc.themes.BOOTSTRAP,
+                        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
+                       ]
+
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 app.config.suppress_callback_exceptions = True
 
@@ -32,11 +39,4 @@ server.config.update(
 db.init_app(server)
 
 class Users(UserMixin, Users):
-    def __init__(self, username):
-        self.username = username
-
-    def get_id(self):
-        # Implement your own logic to return a unique identifier for the user
-        return self.username
-
-# Setup the LoginManager for the server
+    pass

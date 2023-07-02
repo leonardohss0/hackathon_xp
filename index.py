@@ -1,14 +1,17 @@
 from dash import html, dcc
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
-import pandas as pd
-import numpy as np
 import dash
-from flask_login import current_user
+import pandas as pd
+import json
 
 from app import *
+from utils.openai import openai_responses, openai_responses_metas_individuais
+from utils.typeform import typeform_responses, typeform_fields
 from pages import login, data, register, home
 
+import warnings
+warnings.filterwarnings("ignore")
 
 login_manager = LoginManager()
 login_manager.init_app(server)
@@ -22,6 +25,7 @@ app.layout = html.Div(
             dcc.Location(id="base-url", refresh=False), 
             dcc.Store(id="login-state", data=""),
             dcc.Store(id="register-state", data=""),
+            dcc.Store(id="login-value", data = ""),
 
             html.Div(id="page-content", style={"height": "100vh", "display": "flex", "justify-content": "center"})
         ])
@@ -63,9 +67,9 @@ def render_page_content(login_state, register_state):
 
 @app.callback(Output("page-content", "children"), 
             Input("base-url", "pathname"),
-            [State("login-state", "data"), State("register-state", "data")])
+            [State("login-state", "data"), State("register-state", "data"), State("login-value", "data"),])
 
-def render_page_content(pathname, login_state, register_state):
+def render_page_content(pathname, login_state, register_state, login_value):
 
     if (pathname == "/login" or pathname == "/"):
         return login.render_layout(login_state)
@@ -77,7 +81,18 @@ def render_page_content(pathname, login_state, register_state):
         return data.render_layout()
     
     if pathname == "/home":
-        return home.render_layout()
+
+        res_typeform_responses = typeform_responses()
+        res_typeform_fields = typeform_fields()
+     
+        df_typeform = pd.merge(res_typeform_fields, res_typeform_responses, on = 'ref')
+
+        data_dict = df_typeform.to_dict(orient='records')
+        data_str = json.dumps(data_dict, ensure_ascii=False)
+        response_openai =  openai_responses(data_str)
+        response_metas_individuais = '' # openai_responses_metas_individuais(data_str)
+
+        return home.render_layout(df_typeform, response_openai)
 
 if __name__ == "__main__":
     app.run_server(port=8050, debug=True)

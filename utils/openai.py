@@ -35,8 +35,6 @@ def openai_responses_metas_individuais(message):
 
     url = "https://api.openai.com/v1/chat/completions"
 
-    # OPENAI_API_KEY = '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'
-
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {OPENAI_API_KEY}"

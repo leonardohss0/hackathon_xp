@@ -15,16 +15,27 @@ Este projeto foi desenvolvido como parte de um hackathon do setor financeiro, co
 A estrutura do projeto é organizada da seguinte maneira:
 
 ├── assets: Esta pasta contém recursos estáticos, como imagens, folhas de estilo CSS, arquivos de fonte, etc.
+
 ├── pages: Aqui estão as páginas da plataforma, cada página é responsável por um aspecto específico, como a página inicial, página de configurações, página de visualização do planejamento financeiro, etc.
+
 ├── resources: Essa pasta contém recursos adicionais utilizados pelo projeto, como arquivos de dados ou modelos pré-treinados.
+
 ├── utils: Esta pasta contém utilitários e módulos auxiliares para o projeto.
+
 ├── .gitignore: Arquivo que especifica quais arquivos e pastas devem ser ignorados pelo controle de versão Git.
+
 ├── LICENSE: Arquivo de licença que especifica os termos e condições para o uso deste projeto.
+
 ├── README.md: Este arquivo que você está lendo agora, contendo informações detalhadas sobre o projeto.
+
 ├── app.py: Arquivo principal do aplicativo Dash, que inicia o servidor e define as rotas e layouts das páginas.
+
 ├── create_database.py: Script em Python para criar o banco de dados SQLite que armazena os dados dos usuários.
+
 ├── data.sqlite: Arquivo do banco de dados SQLite que armazena os dados dos usuários.
+
 ├── index.py: Arquivo de entrada do aplicativo Dash, importa e inicia o arquivo app.py.
+
 ├── requirements.txt: Arquivo que lista todas as dependências do projeto, permitindo uma fácil instalação.
 
 
